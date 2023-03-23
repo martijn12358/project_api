@@ -20,7 +20,7 @@ jobs:
       run: |
         source .env/bin/activate
         python -m pip install --upgrade pip
-        python pip install flask
+        python -m pip install flask
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
