@@ -15,11 +15,11 @@ jobs:
     - name: Set up Python in a virtual env
       run: |
         if [[ `uname` != "Darwin" ]]; then sudo apt -y install python3-venv; fi
-        python3 -m venv .env
+         python3 -m venv flask-env
     - name: Install dependencies
       run: |
-        source .env/bin/activate
+        source flask-env/bin/activate
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
-      run: python main.py
+      run: source flask-env/bin/activate
