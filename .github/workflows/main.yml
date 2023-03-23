@@ -29,5 +29,4 @@ jobs:
     steps:
       - name: run code
         run: |
-          source .env/bin/activate
           nohup python3 main.py > /dev/null 2>&1 &
