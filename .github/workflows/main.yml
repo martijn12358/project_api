@@ -29,4 +29,5 @@ jobs:
     steps:
       - name: run code
         run: |
-          nohup python3 main.py > /dev/null 2>&1 &
+          source .env/bin/activate
+          screen -dmS api python3 main.py
