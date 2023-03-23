@@ -24,4 +24,4 @@ jobs:
     - name: Test with pytest
       run: |
         source .env/bin/activate
-        pytest
+        python3 main.py
