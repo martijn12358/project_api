@@ -30,4 +30,3 @@ jobs:
       - name: run code
         run: |
           source .env/bin/activate
-          screen -dmS api python3 main.py
