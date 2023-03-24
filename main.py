@@ -12,7 +12,7 @@ def projectdata():
         text = "invalid date"
     else:
         text = startdate
-    return jsonify({'data': [{'date': startdate + "test", 'KM/H': '13'}, {'date': startdate, 'KM/H': '18'}]})
+    return jsonify({'data': [{'date': startdate + "test", 'KM/H ': '13'}, {'date': startdate, 'KM/H': '18'}]})
 
 if __name__ == '__main__':
     app.run()
