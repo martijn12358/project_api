@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from flask import Flask, jsonify, request
 
 
@@ -14,5 +15,5 @@ def projectdata():
     return jsonify({'data': [{'date': startdate, 'KM/H': '13'}, {'date': startdate, 'KM/H': '12'}]})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
