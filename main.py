@@ -28,31 +28,31 @@ def projectdata():
     #check data validity
     #check startdate
     if startdate is None:
-        return jsonify({'error': 'no startdate entered'})
+        return jsonify({'error': 'no startdate entered'}), 400
     else:
         if not is_date(startdate):
-            return jsonify({'error': 'invalid startdate'})
+            return jsonify({'error': 'invalid startdate'}),400
     #check datatype
     if datatype is None:
-        return jsonify({'error': 'no datatype entered'})
+        return jsonify({'error': 'no datatype entered'}),400
     else:
         if datatype not in list_datatypes:
-            return jsonify({'error': 'invalid datatype'})
+            return jsonify({'error': 'invalid datatype'}), 400
     #check aggregation
     if aggregation is not None:
         if aggregation not in list_aggregation:
-            return jsonify({'error': "invalid aggregation type"})
+            return jsonify({'error': "invalid aggregation type"}), 400
     #check enddate
     if enddate is not None:
         if not is_date(enddate):
-            return jsonify({'error': 'invalid enddate'})
+            return jsonify({'error': 'invalid enddate'}), 400
         elif startdate == enddate:
-            return jsonify({'error': 'enddate same as startdate'})
+            return jsonify({'error': 'enddate same as startdate'}), 400
         elif startdate > enddate:
-            return jsonify({'error': 'enddate before startdate'})
+            return jsonify({'error': 'enddate before startdate'}), 400
     if trip is not None:
         if not trip.isdigit():
-            return jsonify({'error': 'invalid trip'})
+            return jsonify({'error': 'invalid trip'}), 400
 
     #check request and return data
     if datatype == "speed":
@@ -99,7 +99,7 @@ def projectdata():
                 }
                 )
         elif aggregation is None:
-            return jsonify({'error': 'no given aggregation'})
+            return jsonify({'error': 'no given aggregation'}), 400
         else:
             if aggregation == "daily":
                 #database request speed daily from given dates
@@ -182,9 +182,13 @@ def projectdata():
     elif datatype == "distance":
         if enddate is None:
             # database request distance on given date
-            return
+            return jsonify({"data": [
+                        {
+                            "distance": 10.5
+                        }
+            ]})
         elif aggregation is None:
-            return jsonify({'error': 'no given aggregation'})
+            return jsonify({'error': 'no given aggregation'}), 400
         else:
             if aggregation == "daily":
                 # database request distance daily from given dates
@@ -286,7 +290,7 @@ def projectdata():
                 }
                 )
 
-    return jsonify({'error': 'unreachable statement'})
+    return jsonify({'error': 'unreachable statement'}) ,400
 
 
 def is_date(string):
