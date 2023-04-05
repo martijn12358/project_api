@@ -28,7 +28,7 @@ def projectdata():
     #check data validity
     #check startdate
     if startdate is None:
-        return jsonify({'error': 'no date entered'})
+        return jsonify({'error': 'no startdate entered'})
     else:
         if not is_date(startdate):
             return jsonify({'error': 'invalid startdate'})
