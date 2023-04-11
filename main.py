@@ -47,7 +47,8 @@ def projectdata():
         if not is_date(enddate):
             return jsonify({'error': 'invalid enddate'}), 400
         elif startdate == enddate:
-            return jsonify({'error': 'enddate same as startdate'}), 400
+            #return jsonify({'error': 'enddate same as startdate'}), 400
+            enddate = None
         elif startdate > enddate:
             return jsonify({'error': 'enddate before startdate'}), 400
     if trip is not None:
