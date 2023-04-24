@@ -4,6 +4,7 @@ import datetime
 
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 
 list_datatypes = ["speed", #returns the average speed as listed in the recieved message when only start date given, returns daily average speed if start and end date is given
                   "distance", #returns the total distance (per trip or per day?)
