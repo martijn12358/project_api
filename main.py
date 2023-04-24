@@ -288,7 +288,7 @@ def projectdata():
                     {
                       "latitude": 52.2245,
                       "longitude": 6.8967,
-                      "test": "test"
+                      "name": "test"
                     }
                   ]
                 }
