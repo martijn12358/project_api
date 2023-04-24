@@ -1,6 +1,6 @@
 # project_api
 
-the url that is used for the api is: https://api.martijn12358.nl/project_api  
+the url that is used for the api is: https://api.martijn12358.nl/project-data
 
 the api takes 5 arguments of which 2 are always required  
 the parameters are:  
