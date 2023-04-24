@@ -277,21 +277,24 @@ def projectdata():
                   "data": [
                     {
                       "latitude": 52.2215,
-                      "longitude": 6.8937
+                      "longitude": 6.8937,
+                      "name": "test"
                     },
                     {
                       "latitude": 52.2225,
-                      "longitude": 6.8958
+                      "longitude": 6.8958,
+                      "name": "test"
                     },
                     {
                       "latitude": 52.2245,
-                      "longitude": 6.8967
+                      "longitude": 6.8967,
+                      "test": "test"
                     }
                   ]
                 }
                 )
 
-    return jsonify({'error': 'unreachable statement'}) ,400
+    return jsonify({'error': 'unreachable statement'}),400
 
 
 def is_date(string):
@@ -300,12 +303,6 @@ def is_date(string):
         return True
     except ValueError:
         return False
-
-
-def retrieve_data():
-    con = mysql.connector.connect()
-
-    return
 
 
 if __name__ == '__main__':
