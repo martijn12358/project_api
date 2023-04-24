@@ -276,19 +276,19 @@ def projectdata():
         return jsonify({
                   "data": [
                     {
+                      "name": "test1",
                       "latitude": 52.2215,
-                      "longitude": 6.8937,
-                      "name": "test"
+                      "longitude": 6.8937
                     },
                     {
+                      "name": "test2",
                       "latitude": 52.2225,
-                      "longitude": 6.8958,
-                      "name": "test"
+                      "longitude": 6.8958
                     },
                     {
+                      "name": "test3",
                       "latitude": 52.2245,
-                      "longitude": 6.8967,
-                      "name": "test"
+                      "longitude": 6.8967
                     }
                   ]
                 }
