@@ -97,12 +97,43 @@ def fill_database():
   print("Database filled with test data")
 
 def retrieve_data(datatype, aggregation, startdate, enddate=None, trip=None):
-    con = connect_database()
+  con = connect_database()
+  if datatype == "speed":
+    if enddate is None:
+      if trip is None:
+        #average speed of day
+      else:
+        #trip average speed
+    else:
+      if aggregation == "daily":
+        #daily average speed from start to end date
+      elif aggregation == "weekly":
+        #weekly average speed from start to end date
+      elif aggregation == "monthly":
+        #monthly average speed from start to end date
+      else
+        #yearly average speed from start to end date
+  elif datatype == "distance":
+    if enddate is None:
+      if trip is None:
+        #total distance of day
+      else:
+        #total distance of trip
+    else:
+      if aggregation == "daily":
+        # daily average speed from start to end date
+      elif aggregation == "weekly":
+        # weekly average speed from start to end date
+      elif aggregation == "monthly":
+        # monthly average speed from start to end date
+      else
+        # yearly average speed from start to end date
 
-    results =0
-    con.close()
 
-    return results
+  results =0
+  con.close()
+
+  return results
 
 create_database()
 data = retrieve_data("speed", "weekly", "2023-04-21", "2023-04-28", 1)
