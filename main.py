@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import mysql.connector
 import datetime
+import database_creator
 
 
 app = Flask(__name__)
@@ -61,242 +62,65 @@ def projectdata():
         if enddate is None:
             if trip is None:
                 #database request speed on given day
-                return jsonify({
-                          "data": [
-                            {
-                              "speed": 11,
-                              "time": "2023-04-05T12:30:00"
-                            },
-                            {
-                              "speed": 6,
-                              "time": "2023-04-05T12:31:00"
-                            },
-                            {
-                              "speed": 9,
-                              "time": "2023-04-05T12:32:00"
-                            }
-                          ]
-                        }
-                        )
+
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
             else:
                 #database request speed of requested trip on given day
-                return jsonify({
-                    "data": [
-                        {
-                            "speed": 11,
-                            "time": "2023-04-05T12:30:00",
-                            "trip": trip
-                        },
-                        {
-                            "speed": 6,
-                            "time": "2023-04-05T12:31:00",
-                            "trip": trip
-                        },
-                        {
-                            "speed": 9,
-                            "time": "2023-04-05T12:32:00",
-                            "trip": trip
-                        }
-                    ]
-                }
-                )
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
         elif aggregation is None:
             return jsonify({'error': 'no given aggregation'}), 400
         else:
             if aggregation == "daily":
                 #database request speed daily from given dates
-                return jsonify({
-                          "data": [
-                            {
-                              "speed": 10.5,
-                              "date": "2023-04-05"
-                            },
-                            {
-                              "speed": 12.3,
-                              "date": "2023-04-06"
-                            },
-                            {
-                              "speed": 15.2,
-                              "date": "2023-04-07"
-                            }
-                          ]
-                        }
-                        )
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
             elif aggregation == "monthly":
                 # database request speed monthly from given dates
-                return jsonify({
-                      "data": [
-                        {
-                          "speed": 12.5,
-                          "monthly_date": "2023-04"
-                        },
-                        {
-                          "speed": 12.3,
-                          "monthly_date": "2023-05"
-                        },
-                        {
-                          "speed": 12.2,
-                          "monthly_date": "2023-06"
-                        }
-                      ]
-                    }
-                    )
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
             elif aggregation == "weekly":
                 # database request speed weekly from given dates
-                return jsonify({
-                          "data": [
-                            {
-                              "speed": 10.5,
-                              "weekly_date": "2023-W14"
-                            },
-                            {
-                              "speed": 11.3,
-                              "weekly_date": "2023-W15"
-                            },
-                            {
-                              "speed": 11.2,
-                              "weekly_date": "2023-W16"
-                            }
-                          ]
-                        })
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
 
             elif aggregation == "yearly":
                 # database request speed yearly from given dates
-                return jsonify({
-                    {
-                        "data": [
-                            {
-                                "speed": 12.5,
-                                "yearly_date": "2023"
-                            },
-                            {
-                                "speed": 12.3,
-                                "yearly_date": "2024"
-                            },
-                            {
-                                "speed": 13.2,
-                                "yearly_date": "2025"
-                            }
-                        ]
-                    }
-
-                })
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
     elif datatype == "distance":
         if enddate is None:
             # database request distance on given date
-            return jsonify({"data": [
-                        {
-                            "distance": 10.5
-                        }
-            ]})
+            data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+            return jsonify({"data": data})
         elif aggregation is None:
             return jsonify({'error': 'no given aggregation'}), 400
         else:
             if aggregation == "daily":
                 # database request distance daily from given dates
-                return jsonify({
-                    "data": [
-                        {
-                            "distance": 10.5,
-                            "date": "2023-04-05"
-                        },
-                        {
-                            "distance": 12.3,
-                            "date": "2023-04-06"
-                        },
-                        {
-                            "distance": 15.2,
-                            "date": "2023-04-07"
-                        }
-                    ]
-                }
-                )
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
             elif aggregation == "monthly":
                 # database request distance monthly from given dates
-                return jsonify({
-                    "data": [
-                        {
-                            "distance": 100.5,
-                            "monthly_date": "2023-04"
-                        },
-                        {
-                            "distance": 120.3,
-                            "monthly_date": "2023-05"
-                        },
-                        {
-                            "distance": 150.2,
-                            "monthly_date": "2023-06"
-                        }
-                    ]
-                }
-                )
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
             elif aggregation == "weekly":
                 # database request distance weekly from given dates
-                return jsonify({
-                          "data": [
-                            {
-                              "distance": 40.5,
-                              "weekly_date": "2023-W14"
-                            },
-                            {
-                              "distance": 22.3,
-                              "weekly_date": "2023-W15"
-                            },
-                            {
-                              "distance": 35.2,
-                              "weekly_date": "2023-W16"
-                            }
-                          ]
-                        })
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
             elif aggregation == "yearly":
                 # database request distance yearly from given dates
-                return jsonify({
-                    {
-                        "data": [
-                            {
-                                "distance": 1000.5,
-                                "yearly_date": "2023"
-                            },
-                            {
-                                "distance": 1200.3,
-                                "yearly_date": "2024"
-                            },
-                            {
-                                "distance": 1500.2,
-                                "yearly_date": "2025"
-                            }
-                        ]
-                    }
-
-                })
+                data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+                return jsonify({"data": data})
     elif datatype == "total_trips":
         # database request total trips on given date
-        return jsonify({"data" : [{"total trips on " + startdate: "2"}]})
+        data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+        return jsonify({"data": data})
     elif datatype == "locations":
         # database request locations on given date
-        return jsonify({
-                  "data": [
-                    {
-                      "layer": "markers",
-                      "name": "test1",
-                      "latitude": 52.2215,
-                      "longitude": 6.8937
-                    },
-                    {
-                      "layer": "markers",
-                      "name": "test2",
-                      "latitude": 52.2225,
-                      "longitude": 6.8958
-                    },
-                    {
-                      "layer": "markers",
-                      "name": "test3",
-                      "latitude": 52.2245,
-                      "longitude": 6.8967
-                    }
-                  ]
-                }
-                )
+        data = database_creator.retrieve_data(datatype, aggregation, startdate, enddate, trip)
+        return jsonify({"data": data})
 
     return jsonify({'error': 'unreachable statement'}),400
 
