@@ -34,7 +34,7 @@ def create_database():
   mycursor.execute("USE data")
 
   # Create the "data" table with the specified fields
-  mycursor.execute("CREATE TABLE IF NOT EXISTS data (speed DOUBLE, distance DOUBLE, time DATETIME, longitude DOUBLE, latitude DOUBLE, trip INT)")
+  mycursor.execute("CREATE TABLE IF NOT EXISTS data (speed DOUBLE, distance DOUBLE, dtime DATETIME, longitude DOUBLE, latitude DOUBLE, trip INT)")
 
   # Commit the changes
   mydb.commit()
