@@ -134,5 +134,7 @@ def is_date(string):
 
 
 if __name__ == '__main__':
+    database_creator.create_database()
+    database_creator.fill_database()
     app.run()
 
