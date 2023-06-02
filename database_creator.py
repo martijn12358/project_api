@@ -108,7 +108,7 @@ def retrieve_data(datatype, aggregation, startdate, enddate=None, trip=None):
       if trip is None:
         #average speed of day
         sql = f"SELECT speed as speed, dtime as date from data WHERE DATE(dtime) = '{startdate}'"
-        sql = f"SELECT date, speed as speed FROM ( SELECT DATE_FORMAT(dtime, '%Y-%m-%d-%h-%m') AS date, speed FROM data WHERE DATE(dtime) = '{startdate}' ) AS subquery GROUP BY date"
+        sql = f"SELECT date, speed as speed FROM ( SELECT DATE_FORMAT(dtime, '%Y-%m-%d %H-%i') AS date, speed FROM data WHERE DATE(dtime) = '{startdate}' ) AS subquery GROUP BY date"
       else:
           #trip average speed
           sql = f"SELECT speed from data WHERE DATE(dtime) = '{startdate}' and trip = {trip}"
