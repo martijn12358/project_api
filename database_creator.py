@@ -129,7 +129,7 @@ def retrieve_data(datatype, aggregation, startdate, enddate=None, trip=None):
     if enddate is None:
         if trip is None:
           #total distance of day
-          sql = f"SELECT SUM(distance) from data WHERE DATE(dtime) = '{startdate}'"
+          sql = f"SELECT SUM(distance) as distance, date(dtime) as date from data WHERE DATE(dtime) = '{startdate}'"
         else:
           #total distance of trip
           sql = f"SELECT distance from data WHERE DATE(dtime) = '{startdate}' and trip = {trip}"
