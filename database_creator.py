@@ -80,7 +80,7 @@ def fill_database():
     for i in range(100):
       speed = randint(0, 30)
       distance = round(uniform(0, 100)+100*i, 2)
-      time = current_date + timedelta(minutes=randint(0, 1439))
+      time = current_date + timedelta(minutes=i)
       longitude = round(enschede_longitude + uniform(-0.01, 0.01), 6)
       latitude = round(enschede_latitude + uniform(-0.01, 0.01), 6)
       trip = 0
