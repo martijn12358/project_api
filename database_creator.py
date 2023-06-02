@@ -79,7 +79,7 @@ def fill_database():
     # Generate 100 random entries for the current date
     for i in range(100):
       speed = randint(0, 30)
-      distance = randint(3, 20)
+      distance = randint(0, 20)
       time = current_date + timedelta(minutes=i)
       longitude = round(enschede_longitude + uniform(-0.01, 0.01), 6)
       latitude = round(enschede_latitude + uniform(-0.01, 0.01), 6)
