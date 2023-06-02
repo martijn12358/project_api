@@ -115,7 +115,7 @@ def retrieve_data(datatype, aggregation, startdate, enddate=None, trip=None):
     else:
         if aggregation == "daily":
           #daily average speed from start to end date
-          sql = f"SELECT date, avg(speed) as speed FROM ( SELECT DATE_FORMAT(dtime, '%Y-%m-%d %H:%i') AS date, speed FROM data WHERE DATE(dtime) BETWEEN '{startdate}' AND '{enddate}') AS subquery GROUP BY date"
+          sql = f"SELECT date, avg(speed) as speed FROM ( SELECT DATE_FORMAT(dtime, '%Y-%m-%d') AS date, speed FROM data WHERE DATE(dtime) BETWEEN '{startdate}' AND '{enddate}') AS subquery GROUP BY date"
         elif aggregation == "weekly":
           #weekly average speed from start to end date
           sql = f"SELECT weekly_date, avg(speed) as speed FROM ( SELECT DATE_FORMAT(dtime, '%Y-W%v') AS weekly_date, speed FROM data WHERE DATE(dtime) BETWEEN '{startdate}' AND '{enddate}') AS subquery GROUP BY weekly_date"
