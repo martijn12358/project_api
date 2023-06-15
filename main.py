@@ -7,6 +7,8 @@ import threading
 try:
     database_functions.connect_database()
     database_functions.database_checker()
+    database_functions.reset_database()
+    database_functions.fill_database()
 
     thread_api = threading.Thread(target=api.app.run)
     thread_mqtt = threading.Thread(target=mqtt_broker.run)
