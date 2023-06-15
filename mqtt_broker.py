@@ -19,6 +19,7 @@ def on_message(client, userdata, msg):
 
 
 def run():
+    print("running mqtt client")
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
