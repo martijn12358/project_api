@@ -22,8 +22,8 @@ def run():
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    print("test")
     client.username_pw_set(username, password)
+    print("test")
     client.connect(broker, port, 60)
     print("running mqtt client")
     client.loop_forever()
