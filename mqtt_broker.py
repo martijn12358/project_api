@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 
 broker = "eu1.cloud.thethings.network"
 port = 1883
-username = "application-test-bike-mileage"
+username = "application-test-bike-mileage@ttn"
 password = "NNSXS.KGQ3626QBCSRLOFIZSWGV6VH5B3LOOYFFCESSDI.GB5XQX3T45IWOABT3ZOYMGAJ7TRJ554MH7TPE6Q6ALBKHSC6WNJA"
 
 def on_connect(client, userdata, flags, rc):
@@ -14,8 +14,7 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
-        print(msg.topic + " " + str(msg.payload))
-
+    print(msg.topic + " " + str(msg.payload))
 
 
 def run():
