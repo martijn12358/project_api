@@ -128,21 +128,21 @@ class Database:
         mydb.close()
 
     def enter_bike_battery(self, battery):
-            mydb = self.connect_database()
-            mycursor = mydb.cursor()
-            sql = f"update bike set battery = {battery} WHERE id = 1"
-            try:
-                # Execute the SQL query with the provided values
-                mycursor.execute(sql)
+        mydb = self.connect_database()
+        mycursor = mydb.cursor()
+        sql = f"update bike set battery = {battery} WHERE id = 1"
+        try:
+            # Execute the SQL query with the provided values
+            mycursor.execute(sql)
 
-                # Commit the changes to the database
-                mydb.commit()
+            # Commit the changes to the database
+            mydb.commit()
 
-                print("Data inserted successfully!")
-            except Exception as e:
-                print(f"Error inserting data: {e}")
-            mycursor.close()
-            mydb.close()
+            print("Data inserted successfully!")
+        except Exception as e:
+            print(f"Error inserting data: {e}")
+        mycursor.close()
+        mydb.close()
 
     def fill_database(self):
         # Connect to the MySQL server and select the "data" database
@@ -244,3 +244,12 @@ class Database:
         # results = json.dumps(results)
 
         return results
+
+    def retrieve_bike_info(self, datatype):
+        db = self.connect_database()
+        sql = f"select {datatype} from bike"
+        cursor = db.cursor()
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        db.close()
+        return result

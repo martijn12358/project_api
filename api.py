@@ -13,6 +13,8 @@ class Api(Flask):
                                # returns the amount of trips made on a day (daily speed data can be sorted by trip)
                                "locations",  # returns the locations of the gateways that received a message
                                "battery",  # returns battery percentage
+                               "circumference",
+                               "battery",
                                ]
         self.list_aggregation = ["daily",
                                  "weekly",
@@ -39,7 +41,8 @@ class Api(Flask):
             else:
                 return jsonify({'error': 'not a number'})
         if startdate is None:
-            return jsonify({'error': 'no startdate entered'}), 400
+            if not (datatype == "battery" or datatype == "circumference"):
+                return jsonify({'error': 'no startdate entered'}), 400
         else:
             if not self._is_date(startdate):
                 return jsonify({'error': 'invalid startdate'}), 400
@@ -58,7 +61,6 @@ class Api(Flask):
             if not self._is_date(enddate):
                 return jsonify({'error': 'invalid enddate'}), 400
             elif startdate == enddate:
-                # return jsonify({'error': 'enddate same as startdate'}), 400
                 enddate = None
             elif startdate > enddate:
                 return jsonify({'error': 'enddate before startdate'}), 400
@@ -94,8 +96,16 @@ class Api(Flask):
             # database request locations on given date
             data = self.database.retrieve_data(datatype, aggregation, startdate, enddate, trip)
             return jsonify({"data": data})
+        elif datatype == "battery":
+            data = self.database.retrieve_bike_info("battery")
+            return jsonify({"data": data})
+        elif datatype == "circumference":
+            data = self.database.retrieve_bike_info("circumference")
+            return jsonify({"data": data})
+
 
         return jsonify({'error': 'unreachable statement'}), 400
+
 
     def _is_date(self, string):
         try:
