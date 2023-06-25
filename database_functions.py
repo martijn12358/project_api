@@ -113,11 +113,10 @@ class Database:
     def enter_bike_circumference(self, circumference):
         mydb = self.connect_database()
         mycursor = mydb.cursor()
-        sql = "INSERT INTO bike (circumference) VALUES (%s) WHERE id = 1"
-        values = circumference
+        sql = f"update bike set circumference = {circumference} WHERE id = 1"
         try:
             # Execute the SQL query with the provided values
-            mycursor.execute(sql, (values,))
+            mycursor.execute(sql)
 
             # Commit the changes to the database
             mydb.commit()
@@ -131,11 +130,10 @@ class Database:
     def enter_bike_battery(self, battery):
             mydb = self.connect_database()
             mycursor = mydb.cursor()
-            sql = "INSERT INTO bike (circumference) VALUES (%s) WHERE id = 1"
-            values = battery
+            sql = f"update bike set battery = {battery} WHERE id = 1"
             try:
                 # Execute the SQL query with the provided values
-                mycursor.execute(sql, (values,))
+                mycursor.execute(sql)
 
                 # Commit the changes to the database
                 mydb.commit()

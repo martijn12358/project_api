@@ -69,12 +69,6 @@ class Api(Flask):
         # check request and return data
         if datatype == "speed":
             if enddate is None:
-                # if trip is None:
-                # database request speed on given day
-                # data = database_functions.retrieve_data(datatype, aggregation, startdate, enddate, trip)
-                # return jsonify({"data": data})
-                # else:
-                # database request speed of requested trip on given day
                 data = self.database.retrieve_data(datatype, aggregation, startdate, enddate, trip)
                 return jsonify({"data": data})
             elif aggregation is None:
