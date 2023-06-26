@@ -248,7 +248,7 @@ class Database:
     def retrieve_bike_info(self, datatype):
         db = self.connect_database()
         if datatype == "circumference":
-            sql = f"select {datatype}/1000 as circumference from bike"
+            sql = f"select {datatype}*1000 as circumference from bike"
         else:
             sql = f"select {datatype} from bike"
         cursor = db.cursor()
