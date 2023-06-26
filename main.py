@@ -11,6 +11,8 @@ db_host = "localhost"
 db_user = "project_dev"
 db_password = "project_password"
 db = "data"
+rs_db = False
+fl_db = False
 
 
 try:
@@ -18,8 +20,10 @@ try:
 
     database.connect_database()
     database.database_checker()
-    database.reset_database()
-    database.fill_database()
+    if rs_db:
+        database.reset_database()
+    if fl_db:
+        database.fill_database()
 
     mqtt_client = mqtt_broker(broker=broker, port=port, username=username, password=password, database=database)
     api = Api(database=database)
