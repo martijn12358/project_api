@@ -36,6 +36,7 @@ class Api(Flask):
         # check startdate
         if circumference is not None:
             if circumference.isdigit():
+                circumference = (int(circumference)/1000)
                 self.database.enter_bike_circumference(circumference)
                 return jsonify({'info': 'successfully saved bike info'})
             else:
