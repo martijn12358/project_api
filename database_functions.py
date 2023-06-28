@@ -212,10 +212,10 @@ class Database:
             if enddate is None:
                 if trip is None:
                     # total distance of day
-                    sql = f"SELECT round(SUM((distance * b.circumference)/1000), 2) as distance from data d CROSS JOIN bike b WHERE DATE(dtime) = '{startdate}'"
+                    sql = f"SELECT round(SUM((distance * b.circumference)/1000), 2) as distance, dtime as date from data d CROSS JOIN bike b WHERE DATE(dtime) = '{startdate}'"
                 else:
                     # total distance of trip
-                    sql = f"SELECT round(SUM((distance * b.circumference)/1000), 2) as distance from data d CROSS JOIN bike b WHERE DATE(dtime) = '{startdate}' and trip = {trip}"
+                    sql = f"SELECT round(SUM((distance * b.circumference)/1000), 2) as distance, dtime as date from data d CROSS JOIN bike b WHERE DATE(dtime) = '{startdate}' and trip = {trip}"
             else:
                 if aggregation == "daily":
                     # daily average speed from start to end date
