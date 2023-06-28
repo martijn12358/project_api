@@ -50,7 +50,7 @@ class mqtt_broker:
         bytes_array_n = [int(bytes_array[0], 16), int(distance_bytes, 16), int(timer_bytes, 16)]
         wheelrotation_second = (64 / 1000000) * bytes_array_n[2]
 
-        self.database.enter_message(wheelrotation_second, distance_bytes, date_parts[0], longitude, latitude, "markers",
+        self.database.enter_message(wheelrotation_second, bytes_array_n[1], date_parts[0], longitude, latitude, "markers",
                                          gateway_name, 0)
         self.database.enter_bike_battery(bytes_array_n[0])
 
