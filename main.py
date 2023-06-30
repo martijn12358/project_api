@@ -2,18 +2,21 @@ from api import Api
 import threading
 from database_functions import Database
 from mqtt_broker import mqtt_broker
+import json
 
-broker = "eu1.cloud.thethings.network"
-port = 1883
-username = "application-test-bike-mileage@ttn"
-password = "NNSXS.KGQ3626QBCSRLOFIZSWGV6VH5B3LOOYFFCESSDI.GB5XQX3T45IWOABT3ZOYMGAJ7TRJ554MH7TPE6Q6ALBKHSC6WNJA"
-db_host = "localhost"
-db_user = "project_dev"
-db_password = "project_password"
-db = "data"
-rs_db = False
-fl_db = False
+with open('settings.json', 'r') as file:
+    settings = json.load(file)
 
+broker = settings['broker']
+port = settings['port']
+username = settings['username']
+password = settings['password']
+db_host = settings['db_host']
+db_user = settings['db_user']
+db_password = settings['db_password']
+db = settings['db']
+rs_db = settings['rs_db']
+fl_db = settings['fl_db']
 
 try:
     database = Database(host=db_host, user=db_user, password=db_password, database=db)

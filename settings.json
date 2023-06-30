@@ -1,0 +1,12 @@
+{
+  "broker": "eu1.cloud.thethings.network",
+  "port": 1883,
+  "username": "application-test-bike-mileage@ttn",
+  "password": "NNSXS.KGQ3626QBCSRLOFIZSWGV6VH5B3LOOYFFCESSDI.GB5XQX3T45IWOABT3ZOYMGAJ7TRJ554MH7TPE6Q6ALBKHSC6WNJA",
+  "db_host" : "localhost",
+  "db_user" : "project_dev",
+  "db_password": "project_password",
+  "db" : "data",
+  "rs_db" : false,
+  "fl_db": false
+}
